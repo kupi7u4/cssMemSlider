@@ -19,18 +19,22 @@
   background: #282828;
   border-radius: 15px;
   padding: 20px 20px 30px;
+	margin: 10px;
 }
 .slider-images {
-  width: 700px;
-  height: 550px;
+  max-width: 700px;
   overflow: hidden;
   display: flex;
 }
 .slides {
+	width: 100%;
+	flex-shrink: 0;
 	transition: margin-left 0.3s ease-in-out;
 }
 .slides > img {
   border-radius: 10px;
+	max-width: 100%;
+	max-height: 100%;
 }
 .wrapper-controls {
   display: flex;
@@ -96,19 +100,31 @@
 	border-radius: 50%;
 }
 
-
-
-.wrapper label:hover,
-.wrapper_mem-slider > input[data-value="1"]:checked ~ .controls label:nth-of-type(1),
-.wrapper_mem-slider > input[data-value="2"]:checked ~ .controls label:nth-of-type(2),
-.wrapper_mem-slider > input[data-value="3"]:checked ~ .controls label:nth-of-type(3),
-.wrapper_mem-slider > input[data-value="4"]:checked ~ .controls label:nth-of-type(4),
-.wrapper_mem-slider > input[data-value="5"]:checked ~ .controls label:nth-of-type(5) {
-	background: #ddd;
+.controls__label:hover {
+	background-color: #ddd;
 }
 
-.controls > label:active {
-	background: #ddd;
+.controls__label:active {
+	background-color: #ddd;
+}
+
+.controls__label:before {
+  content: '';
+  position: absolute;
+  display: block;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+}
+
+.wrapper_mem-slider > input[data-value="1"]:checked ~ .slider-content .controls__label:nth-of-type(1),
+.wrapper_mem-slider > input[data-value="2"]:checked ~ .slider-content .controls__label:nth-of-type(2),
+.wrapper_mem-slider > input[data-value="3"]:checked ~ .slider-content .controls__label:nth-of-type(3),
+.wrapper_mem-slider > input[data-value="4"]:checked ~ .slider-content .controls__label:nth-of-type(4),
+.wrapper_mem-slider > input[data-value="5"]:checked ~ .slider-content .controls__label:nth-of-type(5) {
+	background-color: #ddd;
+	cursor: default;
 }
 
 
@@ -137,3 +153,20 @@
 	margin-left: -400%;
 }
 
+@media (max-width: 767px) {
+	.wrapper_mem-slider {
+		padding: 15px 15px 20px;
+	}
+	.slider-content {
+		width: 100%;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
+	.slider-text {
+		text-align: center;
+	}
+	.slider-text__item {
+		font-size: 11px;
+	}
+}
